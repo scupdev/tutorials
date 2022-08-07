@@ -8,21 +8,16 @@ enum class GameState {PLAY, EXIT};
 
 class Game {
     public:
-        Game();
-        ~Game();
-
+        Game(const char* title, int x, int y, int w, int h, Uint32 flags);
+        GameState gameState;
+        SDL_Texture* loadTexture(const char* filePath);
+        void render(SDL_Texture* tex);
         void run();
-
+        
     private:
-        void init(const char* title, int x, int y, int w, int h, Uint32 flags);
-        void gameLoop();
-        void handleEvents();
-
-        SDL_Window* _window;
-        SDL_Renderer* _renderer;
-
-        int _screenWidth;
-        int _screenHeight;
-
-        GameState _gameState;
+        void clear();
+        void display();
+        void cleanUp();
+        SDL_Window* window;
+        SDL_Renderer* renderer;
 };
